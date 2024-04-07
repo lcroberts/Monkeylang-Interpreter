@@ -1,0 +1,21 @@
+Lexer and lexemes (tokens): Turns the program text into it's simplest
+components called lexemes or tokens. Types of tokens include keywords,
+identiers, operators, etc.
+
+Parser: Also called syntax analysis, it turns our string of tokens into an
+abstract syntax tree that allows us to actually turn the code into a runnable
+form.
+
+Abstract Syntax Tree (AST): A tree structure representing the flow of a piece
+of code. It is abstract in the sense that it does not contain every detail of
+the syntax (such as semicolons). It just contains what you need to be able to
+execute the piece of code.
+
+Recursive Descent Parser: You start with the root node and build the abstract
+syntax tree from there.
+
+Top Down Operator Precedence (Pratt Parsing): A kind of recursive descent
+parser. The idea is that there's a parsing function associated with each token
+type. There can be up to two parsing functions for each token depending on
+whether it's in the prefix or infix position. The deeper something is in the
+abstract syntax tree, the higher it's precedence.
