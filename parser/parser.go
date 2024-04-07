@@ -49,6 +49,19 @@ type Parser struct {
 	infixParseFns  map[token.TokenType]infixParseFn
 }
 
+func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
+	p.prefixParseFns[tokenType] = fn
+}
+
+func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
+	p.infixParseFns[tokenType] = fn
+}
+
+func (p *Parser) nextToken() {
+	p.curToken = p.peekToken
+	p.peekToken = p.l.NextToken()
+}
+
 func New(l *lexer.Lexer) *Parser {
 	p := &Parser{
 		l:      l,
@@ -86,19 +99,6 @@ func New(l *lexer.Lexer) *Parser {
 	p.nextToken()
 
 	return p
-}
-
-func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
-	p.prefixParseFns[tokenType] = fn
-}
-
-func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
-	p.infixParseFns[tokenType] = fn
-}
-
-func (p *Parser) nextToken() {
-	p.curToken = p.peekToken
-	p.peekToken = p.l.NextToken()
 }
 
 func (p *Parser) curTokenIs(t token.TokenType) bool {
