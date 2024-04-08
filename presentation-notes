@@ -19,3 +19,8 @@ parser. The idea is that there's a parsing function associated with each token
 type. There can be up to two parsing functions for each token depending on
 whether it's in the prefix or infix position. The deeper something is in the
 abstract syntax tree, the higher it's precedence.
+
+Left and Right Binding Power: How strong the operator is at sucking in it's
+neighborighing expressions/literals. Ex) 1 + 2 * 3, the left binding power of
+'*' is stronger than the right binding power of '+' so is the left operator of
+the '*' expression.
